@@ -1,11 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class Minion : Card {
-    public int attack, health;
-    // Use this for initialization
-    void Start () {
+public class UserInterface : MonoBehaviour {
+    public Image cardInfoImage;
+	// Use this for initialization
+	void Start () {
 		
 	}
 	
@@ -13,8 +14,4 @@ public class Minion : Card {
 	void Update () {
 		
 	}
-    void Summon()
-    {
-
-    }
 }

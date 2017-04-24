@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour {
 
     public Table table;
+    public UserInterface UI;
     public CardPrototypeManager cards;
     public static GameManager instance;
     void Awake()
@@ -24,6 +25,22 @@ public class GameManager : MonoBehaviour {
     public Card GetCard(int id)
     {
         return cards.GetCard(id);
+    }
+
+    public void SetCardInfoImage(Card card)
+    {
+        UI.cardInfoImage.enabled = true;
+        UI.cardInfoImage.sprite = card.gameObject.GetComponent<SpriteRenderer>().sprite;
+    }
+
+    public void DisableCardInfoImage()
+    {
+        UI.cardInfoImage.enabled = false;
+    }
+
+    public void Play(Card toPlay, Hero owner)
+    {
+        owner.Play(toPlay);
     }
     // Use this for initialization
     void Start () {

@@ -2,10 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Hero : MonoBehaviour {
+public interface IEnemy
+{
 
+}
+public class Hero : MonoBehaviour, IEnemy {
+    public Hero opponent;
     public Hand hand;
     public Deck deck;
+    public Field field;
     private int health = 30;
     private int armor = 0;
     private int max_mana = 0;
@@ -13,7 +18,6 @@ public class Hero : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        
 
     }
 
@@ -24,6 +28,12 @@ public class Hero : MonoBehaviour {
         cur_mana = max_mana;
         hand.Put(deck.DrawCard()); //fatigue
         //run start_turn event and enable controls
+    }
+
+    public void Play(Card toPlay)
+    {
+        hand.Play(toPlay);
+        field.Summon(toPlay);
     }
 
     public void EndTurn()
@@ -39,7 +49,10 @@ public class Hero : MonoBehaviour {
     public void StartGame(bool coin)
     {
         if (coin)
+        {
+            hand.Put(GameManager.instance.GetCard(2));
             hand.Put(deck.DrawCard());
+        }
         hand.Put(deck.DrawCard());
         hand.Put(deck.DrawCard());
         hand.Put(deck.DrawCard());

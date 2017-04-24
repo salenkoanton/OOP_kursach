@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Table : MonoBehaviour {
 
-    private List<TableMinion> yourSide = new List<TableMinion>(), opponentSide = new List<TableMinion>();
+    //private List<TableMinion> yourSide = new List<TableMinion>(), opponentSide = new List<TableMinion>();
     public Hero opponent, you;
     
 	// Use this for initialization

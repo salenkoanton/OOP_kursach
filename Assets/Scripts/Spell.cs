@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Minion : Card {
-    public int attack, health;
-    // Use this for initialization
-    void Start () {
+public class Spell : Card {
+	// Use this for initialization
+	void Start () {
 		
 	}
 	
@@ -13,8 +12,4 @@ public class Minion : Card {
 	void Update () {
 		
 	}
-    void Summon()
-    {
-
-    }
 }

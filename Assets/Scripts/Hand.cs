@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Hand : MonoBehaviour {
 
-    public List<Card> list = new List<Card>();
+    private List<Card> list = new List<Card>();
     public float cardWidth = 1f;
     // Use this for initialization
     void Start () {
@@ -26,7 +26,7 @@ public class Hand : MonoBehaviour {
     {
         for (int i = 0; i < list.Count; i++)
         {
-            Vector3 newPosition = new Vector3((1 - list.Count) / 2 + i, 0, 0);
+            Vector3 newPosition = new Vector3((1 - list.Count) / 2 + i, 0, 2 - i/10f);
             list[i].transform.position = this.transform.position + newPosition * cardWidth;
         }
     }
