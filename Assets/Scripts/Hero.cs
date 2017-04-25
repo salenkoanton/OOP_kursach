@@ -71,5 +71,6 @@ public abstract class Hero : MonoBehaviour, IEnemy, ICauser {
         hand.Put(deck.DrawCard());
         hand.Put(deck.DrawCard());
         hand.Put(deck.DrawCard());
+        Debug.Log("play");
     }
 }

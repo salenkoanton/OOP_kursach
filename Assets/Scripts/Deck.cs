@@ -7,7 +7,7 @@ public class Deck : MonoBehaviour {
     public List<int> ids = new List<int>();
     private List<Card> list = new List<Card>();
     // Use this for initialization
-    void Start () {
+    void Awake () {
         foreach (int id in ids)
         {
             Card instance = GameManager.instance.GetCard(id);
