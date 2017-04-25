@@ -2,8 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TableMinion : MonoBehaviour {
+public class TableMinion : Minion {
 
+    private Minion card;
+    
+    public void SetMinion(Minion card)
+    {
+        this.card = card;
+    }
+    public Minion GetMinion()
+    {
+        return card;
+    }
+
+    
 	// Use this for initialization
 	void Start () {
 		

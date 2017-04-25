@@ -13,8 +13,14 @@ public class Minion : Card {
 	void Update () {
 		
 	}
-    void Summon()
+    void Summon(Field field)
     {
-
+        
+    }
+    public static TableMinion Convert(Minion minion)
+    {
+        TableMinion new_minion = new TableMinion();
+        new_minion.SetMinion(minion);
+        return new_minion;
     }
 }

@@ -1,11 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class UserInterface : MonoBehaviour {
-    public Image cardInfoImage;
-    public UINextTurn nextTurn;
+public class You : Hero {
 
 	// Use this for initialization
 	void Start () {

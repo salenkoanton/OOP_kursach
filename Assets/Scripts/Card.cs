@@ -9,8 +9,9 @@ public abstract class Card : MonoBehaviour {
 	}
 
 	void Update () {
-		
-	}
+
+    }
+
 
     protected void OnMouseEnter()
     {

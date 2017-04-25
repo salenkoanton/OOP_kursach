@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour {
     public UserInterface UI;
     public CardPrototypeManager cards;
     public static GameManager instance;
+    public bool yourTurn;
     void Awake()
     {
         if (instance == null)
@@ -19,8 +20,10 @@ public class GameManager : MonoBehaviour {
             Destroy(gameObject);
         }
         DontDestroyOnLoad(gameObject);
-
+        
     }
+
+    
 
     public Card GetCard(int id)
     {
@@ -38,14 +41,35 @@ public class GameManager : MonoBehaviour {
         UI.cardInfoImage.enabled = false;
     }
 
+    public void NextTurn()
+    {
+        yourTurn = !yourTurn;
+        if (yourTurn)
+        {
+            table.opponent.EndTurn();
+            table.you.StartTurn();
+            UI.nextTurn.state = true;
+           
+            
+        }
+        else
+        {
+            table.you.EndTurn();
+            table.opponent.StartTurn();
+
+        }
+        
+    }
+
     public void Play(Card toPlay, Hero owner)
     {
-        owner.Play(toPlay);
+        if (owner.CanPlay(toPlay))
+            owner.Play(toPlay);
     }
     // Use this for initialization
     void Start () {
-		
-	}
+       
+    }
 	
 	// Update is called once per frame
 	void Update () {

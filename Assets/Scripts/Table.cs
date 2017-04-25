@@ -6,12 +6,24 @@ public class Table : MonoBehaviour {
 
     //private List<TableMinion> yourSide = new List<TableMinion>(), opponentSide = new List<TableMinion>();
     public Hero opponent, you;
-    
-	// Use this for initialization
-	void Start () {
+
+    public void StartGame()
+    {
+
         bool coin = Random.Range(0, 2) == 1;
         opponent.StartGame(coin);
         you.StartGame(!coin);
+        GameManager.instance.yourTurn = coin;
+        GameManager.instance.UI.nextTurn.state = coin;
+        if (coin)
+            you.StartTurn();
+        else
+            opponent.StartTurn();
+    }
+
+    // Use this for initialization
+    void Start () {
+        StartGame();
     }
 	
 	// Update is called once per frame

@@ -13,6 +13,8 @@ public class CardPrototypeManager : MonoBehaviour {
         return null;
     }
 
+   
+
 	// Use this for initialization
 	void Start () {
 		
