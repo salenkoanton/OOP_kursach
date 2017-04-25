@@ -17,7 +17,10 @@ public class CardPrototypeManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
+        for (int i = 0; i < list.Count; i++) { //set id
+            list[i].id = i;
+            list[i].name_info = list[i].name;
+        }
 	}
 	
 	// Update is called once per frame

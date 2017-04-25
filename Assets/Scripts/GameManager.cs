@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour {
     public Table table;
     public UserInterface UI;
     public CardPrototypeManager cards;
+    public History history;
     public static GameManager instance;
     public bool yourTurn;
     void Awake()
@@ -61,14 +62,20 @@ public class GameManager : MonoBehaviour {
         
     }
 
-    public void Play(Card toPlay, Hero owner)
+    public bool Play(Card toPlay, Hero owner)
     {
         if (owner.CanPlay(toPlay))
+        {
             owner.Play(toPlay);
+            Debug.Log(owner);
+            history.CreateEvent((ICauser)owner, (IEnemy)toPlay, new Event(EventType.PLAYED));
+            return true;
+        }
+        return false;
     }
     // Use this for initialization
     void Start () {
-       
+        
     }
 	
 	// Update is called once per frame

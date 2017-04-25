@@ -2,10 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Opponent : Hero {
+public class Opponent : Hero, ICauser, IEnemy {
+    public string name_info = "Opponent";
 
-	// Use this for initialization
-	void Start () {
+    public override string ToString()
+    {
+        return name_info;
+    }
+    // Use this for initialization
+    void Start () {
 		
 	}
 	

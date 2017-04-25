@@ -6,7 +6,7 @@ public interface IEnemy
 {
 
 }
-public abstract class Hero : MonoBehaviour, IEnemy {
+public abstract class Hero : MonoBehaviour, IEnemy, ICauser {
     public Hero opponent;
     public Hand hand;
     public Deck deck;
