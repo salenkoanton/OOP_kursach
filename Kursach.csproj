@@ -87,6 +87,7 @@
     <Compile Include="Assets\Scripts\Minion.cs" />
     <Compile Include="Assets\Scripts\Opponent.cs" />
     <Compile Include="Assets\Scripts\Spell.cs" />
+    <Compile Include="Assets\Scripts\Spells\CoinSpell.cs" />
     <Compile Include="Assets\Scripts\Table.cs" />
     <Compile Include="Assets\Scripts\TableMinion.cs" />
     <Compile Include="Assets\Scripts\UINextTurn.cs" />

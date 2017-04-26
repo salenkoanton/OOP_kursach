@@ -9,6 +9,8 @@ public abstract class Card : MonoBehaviour, IEnemy, ICauser{
     Vector3 offset;
     bool dragging = false;
     Vector3 returnPosition;
+    public Hero owner;
+    public bool isPlayed = false;
     void Start () {
 		
 	}
@@ -20,6 +22,7 @@ public abstract class Card : MonoBehaviour, IEnemy, ICauser{
     {
         dragging = true;
         returnPosition = transform.position;
+        GameManager.instance.Select(this);
         //translate the cubes position from the world to Screen Point
         screenSpace = Camera.main.WorldToScreenPoint(transform.position);
 
@@ -42,7 +45,7 @@ public abstract class Card : MonoBehaviour, IEnemy, ICauser{
     {
         dragging = false;
         if (transform.position.y > -2.5f)
-            if (Play())
+            if (GameManager.instance.Play())
                 return;
             else
                 transform.position = returnPosition;
@@ -52,19 +55,21 @@ public abstract class Card : MonoBehaviour, IEnemy, ICauser{
 
     protected void OnMouseEnter()
     {
-        transform.position -= Vector3.forward;
+        if (!isPlayed && owner is You)
+            transform.position -= new Vector3(0, -0.3f, 1);
         GameManager.instance.SetCardInfoImage(this);
     }
 
     protected void OnMouseExit()
     {
-        transform.position += Vector3.forward;
+        if (!isPlayed && owner is You)
+            transform.position += new Vector3(0, -0.3f, 1);
         GameManager.instance.DisableCardInfoImage();
     }
 
-    protected bool Play()
+    public virtual void Play()
     {
-        return GameManager.instance.Play(this, transform.parent.parent.gameObject.GetComponent<Hero>());
+        
     }
 
     public override string ToString()

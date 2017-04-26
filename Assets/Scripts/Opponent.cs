@@ -33,8 +33,8 @@ public class Opponent : Hero, ICauser, IEnemy {
     {
         if (CanPlay(toPlay))
         {
-            GameManager.instance.Play(toPlay, this);
-            return true;
+            GameManager.instance.Select(toPlay);
+            return GameManager.instance.Play();
         }
         return false;
     }

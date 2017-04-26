@@ -13,6 +13,11 @@ public class Minion : Card, ICauser, IEnemy{
 	void Update () {
 		
 	}
+    public override void Play()
+    {
+        base.Play();
+        owner.field.Summon(this);
+    }
     void Summon(Field field)
     {
         

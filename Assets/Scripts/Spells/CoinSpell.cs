@@ -2,20 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Spell : Card {
+public class CoinSpell : Spell {
+
 	// Use this for initialization
 	void Start () {
 		
 	}
 
+
+
     public override void Play()
     {
+
         base.Play();
-        gameObject.SetActive(false);
+        owner.AddCurMana(1);
     }
 
     // Update is called once per frame
     void Update () {
 		
 	}
+
+    
 }

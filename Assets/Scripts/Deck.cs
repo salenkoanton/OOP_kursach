@@ -10,7 +10,7 @@ public class Deck : MonoBehaviour {
     void Awake () {
         foreach (int id in ids)
         {
-            Card instance = GameManager.instance.GetCard(id);
+            Card instance = GameManager.instance.GetCard(id, transform.parent.gameObject.GetComponent<Hero>());
             instance.transform.SetParent(transform);
             instance.gameObject.SetActive(false);
             list.Add(instance);

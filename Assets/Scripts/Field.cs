@@ -22,7 +22,7 @@ public class Field : MonoBehaviour {
         if (list.Count < 7 && toPlay is Minion)
             return true;
         if (toPlay is Spell)
-            return false;
+            return true;
         return false;
     }
 
@@ -33,6 +33,11 @@ public class Field : MonoBehaviour {
             Vector3 newPosition = new Vector3((float)(1 - list.Count) / 2f + (float)i, 0f, 0f);
             list[i].transform.position = transform.position + newPosition * cardWidth;
         }
+    }
+
+    private void OnMouseOver()
+    {
+        // todo if (GameManager)
     }
 
     // Update is called once per frame

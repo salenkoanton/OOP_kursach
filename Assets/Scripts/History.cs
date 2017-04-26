@@ -7,7 +7,8 @@ public enum EventType
     PLAYED = 0,
     DEAL_DAMAGE,
     HEAL,
-    FREEZE
+    FREEZE,
+    NEXT_TURN
     
 }
 
@@ -15,6 +16,10 @@ public class Event
 {
     private int value = -1;
     private EventType type;
+    public EventType Type
+    {
+        get { return type; }
+    }
     public static string[] EventTypeStr = { "played", "deal damage", "heal", "freeze", "", "" };
     public Event(EventType type, int value = -1)
     {

@@ -7,6 +7,28 @@ public class HistoryEvent : MonoBehaviour {
     private ICauser causer;
     private Event eve;
     
+    public IEnemy Enemy
+    {
+        get
+        {
+            return enemy;
+        }
+    }
+    public ICauser Causer
+    {
+        get
+        {
+            return causer;
+        }
+    }
+    public Event Eve
+    {
+        get
+        {
+            return eve;
+        }
+    }
+
     public void SetValues(ICauser causer, IEnemy enemy, Event eve)
     {
         this.causer = causer;

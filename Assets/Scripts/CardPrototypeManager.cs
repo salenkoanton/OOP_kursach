@@ -6,11 +6,15 @@ public class CardPrototypeManager : MonoBehaviour {
 
     public List<Card> list = new List<Card>();
 
-    public Card GetCard(int id)
+    public Card GetCard(int id, Hero owner)
     {
+        Card copy;
         if (id < list.Count && id >= 0)
-            return Instantiate(list[id], new Vector3(0, 0, 0), Quaternion.identity);
-        return null;
+            copy = Instantiate(list[id], new Vector3(0, 0, 0), Quaternion.identity);
+        else
+            return null;
+        copy.owner = owner;
+        return copy;
     }
 
    
