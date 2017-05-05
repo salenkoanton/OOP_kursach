@@ -18,7 +18,21 @@ public abstract class Card : MonoBehaviour, IEnemy, ICauser{
 	void Update () {
 
     }
-    protected void OnMouseDown()
+
+    public virtual void Highlight()
+    {
+
+    }
+    public virtual void Downlight()
+    {
+
+    }
+
+    public virtual void DealDamage(int damage)
+    {
+
+    }
+    protected virtual void OnMouseDown()
     {
         dragging = true;
         returnPosition = transform.position;
@@ -30,7 +44,7 @@ public abstract class Card : MonoBehaviour, IEnemy, ICauser{
         offset = transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenSpace.z));
 
     }
-    protected void OnMouseDrag()
+    protected virtual void OnMouseDrag()
     {
         Vector3 curScreenSpace = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenSpace.z);
 
@@ -41,7 +55,7 @@ public abstract class Card : MonoBehaviour, IEnemy, ICauser{
         transform.position = curPosition;
     }
 
-    protected void OnMouseUp()
+    protected virtual void OnMouseUp()
     {
         dragging = false;
         if (transform.position.y > -2.5f)
@@ -53,14 +67,14 @@ public abstract class Card : MonoBehaviour, IEnemy, ICauser{
             transform.position = returnPosition;
     }
 
-    protected void OnMouseEnter()
+    protected virtual void OnMouseEnter()
     {
         if (!isPlayed && owner is You)
             transform.position -= new Vector3(0, -0.3f, 1);
         GameManager.instance.SetCardInfoImage(this);
     }
 
-    protected void OnMouseExit()
+    protected virtual void OnMouseExit()
     {
         if (!isPlayed && owner is You)
             transform.position += new Vector3(0, -0.3f, 1);
@@ -69,7 +83,7 @@ public abstract class Card : MonoBehaviour, IEnemy, ICauser{
 
     public virtual void Play()
     {
-        
+        isPlayed = true;
     }
 
     public override string ToString()

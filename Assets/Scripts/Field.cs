@@ -10,6 +10,16 @@ public class Field : MonoBehaviour {
 		
 	}
 	
+    public List<IEnemy> GetEnemies()
+    {
+        return list.ConvertAll<IEnemy>(Converter);
+    }
+
+    private static IEnemy Converter(Minion target)
+    {
+        return target as IEnemy;
+    }
+
     public void Summon(Minion toSummon)
     {
         toSummon.transform.SetParent(transform);

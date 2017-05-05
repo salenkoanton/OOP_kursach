@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour {
     public static GameManager instance;
     public bool yourTurn;
     private Card selected;
-
+    public List<IEnemy> enemies = new List<IEnemy>();
     void Awake()
     {
         if (instance == null)
@@ -27,7 +27,51 @@ public class GameManager : MonoBehaviour {
         
     }
 
-    
+    public void PrepareToAttack(Minion minion)
+    {
+        Debug.Log(state.Current);
+        if (state.Current == state.waitForActions)
+        {
+            Debug.Log("ATTACK");
+            enemies = CollectEnemies(minion);
+            state.Next(GameManagerEvent.CHOOSE_ENEMY);
+            foreach (IEnemy enemy in enemies)
+            {
+                enemy.Highlight();
+            }
+        }
+    }
+
+
+    public void InitialiseStateManager()
+    {
+        if (state == null)
+        {
+            state = new GameManagerFSM(yourTurn);
+        }
+    }
+
+    public void EndGame(Hero loser)
+    {
+        if (loser == table.you)
+        {
+
+        }
+        else;
+
+    }
+
+    private List<IEnemy> CollectEnemies(ICauser causer)
+    {
+        List<IEnemy> enem = new List<IEnemy>();
+        if (causer is Minion)
+        {
+            Minion _causer = causer as Minion;
+            enem.AddRange(_causer.owner.opponent.field.GetEnemies()); 
+        }
+        return enem;
+    }
+
 
     public Card GetCard(int id, Hero owner)
     {
@@ -47,27 +91,51 @@ public class GameManager : MonoBehaviour {
 
     public void NextTurn()
     {
-        yourTurn = !yourTurn;
-        if (yourTurn)
+        if (state.Current == state.waitForActions || state.Current == state.waitForOpponent)
         {
-            table.opponent.EndTurn();
-            table.you.StartTurn();
-            UI.nextTurn.state = true;
-           
-            
-        }
-        else
-        {
-            table.you.EndTurn();
-            table.opponent.StartTurn();
+            yourTurn = !yourTurn;
+            if (yourTurn)
+            {
+                table.opponent.EndTurn();
+                table.you.StartTurn();
+                UI.nextTurn.state = true;
+            }
+            else
+            {
+                table.you.EndTurn();
+                table.opponent.StartTurn();
 
+            }
+            state.Next(GameManagerEvent.NEXT_TURN);
         }
-        
     }
 
     public void Select(Card card)
     {
-        selected = card;
+        if (state.waitForActions == state.Current)
+            selected = card;
+        else if (state.chooseEnemy == state.Current && card is Minion && selected is Minion)
+        {
+            Attack((Minion)selected, (Minion)card);
+        }
+    }
+
+    private void Attack(Minion causer, Minion enemy)
+    {
+        enemy.DealDamage(causer.attack);
+        causer.DealDamage(enemy.attack);
+        EndAttack();
+    }
+
+    private void EndAttack()
+    {
+        selected = null;
+        state.Next(GameManagerEvent.END_ACTION);
+        foreach (IEnemy enemy in enemies)
+        {
+            enemy.Downlight();
+        }
+        enemies.Clear();
     }
 
     public bool Play()
@@ -91,10 +159,22 @@ public class GameManager : MonoBehaviour {
     void Start () {
         
     }
-	
-	// Update is called once per frame
-	void Update () {
-		
+    private void UndoAttack()
+    {
+        selected = null;
+        state.Next(GameManagerEvent.RETURN);
+        foreach (IEnemy enemy in enemies)
+        {
+            enemy.Downlight();
+        }
+        enemies.Clear();
+    }
+    // Update is called once per frame
+    void Update () {
+		if (Input.GetMouseButtonDown(1) && state.Current == state.chooseEnemy)
+        {
+            UndoAttack();
+        }
 	}
 }
 
@@ -110,10 +190,31 @@ public enum GameManagerEvent
 public class GameManagerFSM
 {
     ManagerState current;
-    ManagerState summon = new ManagerToSummon();
-    ManagerState waitForActions = new ManagerWaitForActions();
-    ManagerState waitForOpponent = new ManagerWaitForOpponent();
-    ManagerState chooseEnemy = new ManagerChooseEnemy();
+    private ManagerState _summon = new ManagerToSummon();
+    private ManagerState _waitForActions = new ManagerWaitForActions();
+    private ManagerState _waitForOpponent = new ManagerWaitForOpponent();
+    private ManagerState _chooseEnemy = new ManagerChooseEnemy();
+
+    public ManagerState summon
+    {
+        get { return _summon; }
+    }
+    public ManagerState waitForActions
+    {
+        get { return _waitForActions; }
+    }
+    public ManagerState waitForOpponent
+    {
+        get { return _waitForOpponent; }
+    }
+    public ManagerState chooseEnemy
+    {
+        get { return _chooseEnemy; }
+    }
+    public ManagerState Current
+    {
+        get { return current; }
+    }
 
     public GameManagerFSM(bool yourTurn)
     {
@@ -128,6 +229,7 @@ public class GameManagerFSM
             case GameManagerEvent.NEXT_TURN: current.NextTurn(this); break;
             case GameManagerEvent.END_ACTION: current.EndAction(this); break;
             case GameManagerEvent.SUMMON: current.Summon(this); break;
+            case GameManagerEvent.RETURN: current.Return(this); break;
         }
     }
     public abstract class ManagerState
@@ -185,6 +287,17 @@ public class GameManagerFSM
         {
 
         }
+
+        public override void EndAction(GameManagerFSM fsm)
+        {
+            fsm.current = fsm.waitForActions;
+        }
+
+        public override void Return(GameManagerFSM fsm)
+        {
+            fsm.current = fsm.waitForActions;
+        }
+
     }
 
     public class ManagerWaitForActions : ManagerState
@@ -198,6 +311,15 @@ public class GameManagerFSM
         {
 
         }
+        public override void NextTurn(GameManagerFSM fsm)
+        {
+            fsm.current = fsm.waitForOpponent;
+        }
+
+        public override void ChooseEnemy(GameManagerFSM fsm)
+        {
+            fsm.current = fsm.chooseEnemy;
+        }
     }
 
     public class ManagerWaitForOpponent : ManagerState
@@ -210,6 +332,10 @@ public class GameManagerFSM
         public override void End()
         {
 
+        }
+        public override void NextTurn(GameManagerFSM fsm)
+        {
+            fsm.current = fsm.waitForActions;
         }
     }
 }

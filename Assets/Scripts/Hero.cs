@@ -4,9 +4,13 @@ using UnityEngine;
 using UnityEngine.UI;
 public interface IEnemy
 {
-
+    void DealDamage(int damage);
+    void Highlight();
+    void Downlight();
 }
+
 public abstract class Hero : MonoBehaviour, IEnemy, ICauser {
+    
     public Hero opponent;
     public Hand hand;
     public Deck deck;
@@ -17,10 +21,26 @@ public abstract class Hero : MonoBehaviour, IEnemy, ICauser {
     private int max_mana = 0;
     private int cur_mana = 0;
 
+    public void Highlight() {
+
+    }
+    public void Downlight()
+    {
+
+    }
     // Use this for initialization
     void Start() {
 
     }
+
+    public void DealDamage(int damage)
+    {
+        health -= damage;
+        if (health < 0)
+        {
+            GameManager.instance.EndGame(this);
+        }
+    } 
 
     public void AddCurMana(int val)
     {

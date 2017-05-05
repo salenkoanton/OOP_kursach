@@ -15,10 +15,12 @@ public class Table : MonoBehaviour {
         you.StartGame(!coin);
         GameManager.instance.yourTurn = coin;
         GameManager.instance.UI.nextTurn.state = coin;
+        GameManager.instance.InitialiseStateManager();
         if (coin)
             you.StartTurn();
         else
             opponent.StartTurn();
+        
     }
 
     // Use this for initialization

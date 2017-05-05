@@ -8,13 +8,7 @@ public class Deck : MonoBehaviour {
     private List<Card> list = new List<Card>();
     // Use this for initialization
     void Awake () {
-        foreach (int id in ids)
-        {
-            Card instance = GameManager.instance.GetCard(id, transform.parent.gameObject.GetComponent<Hero>());
-            instance.transform.SetParent(transform);
-            instance.gameObject.SetActive(false);
-            list.Add(instance);
-        }
+        
     }
 
     public Card DrawCard()
@@ -33,4 +27,15 @@ public class Deck : MonoBehaviour {
 	void Update () {
 		
 	}
+
+    void Start()
+    {
+        foreach (int id in ids)
+        {
+            Card instance = GameManager.instance.GetCard(id, transform.parent.gameObject.GetComponent<Hero>());
+            instance.transform.SetParent(transform);
+            instance.gameObject.SetActive(false);
+            list.Add(instance);
+        }
+    }
 }
