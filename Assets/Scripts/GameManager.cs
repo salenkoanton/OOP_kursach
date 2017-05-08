@@ -27,13 +27,13 @@ public class GameManager : MonoBehaviour {
         
     }
 
-    public void PrepareToAttack(Minion minion)
+    public void PrepareToAttack(ICauser causer)
     {
         Debug.Log(state.Current);
         if (state.Current == state.waitForActions)
         {
             Debug.Log("ATTACK");
-            enemies = CollectEnemies(minion);
+            enemies = CollectEnemies(causer);
             state.Next(GameManagerEvent.CHOOSE_ENEMY);
             foreach (IEnemy enemy in enemies)
             {
@@ -64,11 +64,11 @@ public class GameManager : MonoBehaviour {
     private List<IEnemy> CollectEnemies(ICauser causer)
     {
         List<IEnemy> enem = new List<IEnemy>();
-        if (causer is Minion)
-        {
-            Minion _causer = causer as Minion;
-            enem.AddRange(_causer.owner.opponent.field.GetEnemies()); 
-        }
+        enem.AddRange(table.opponent.field.GetEnemies());
+        enem.AddRange(table.you.field.GetEnemies());
+        enem.Add(table.you);
+        enem.Add(table.opponent);
+        causer.FilterEnemies(enem);
         return enem;
     }
 
@@ -108,23 +108,52 @@ public class GameManager : MonoBehaviour {
             }
             state.Next(GameManagerEvent.NEXT_TURN);
         }
+        else
+        {
+            history.Message("Click right mouse button");
+            UI.nextTurn.state = true;
+        }
+    }
+
+    public void SelectEnemy(IEnemy enemy)
+    {
+
+        if (enemies.Contains(enemy) && state.chooseEnemy == state.Current)
+        {
+            ICauser causerTMP = selected;
+            Event eve = selected.Cause(enemy);
+            if (eve != null)
+            {
+                history.CreateEvent(causerTMP, enemy, eve);
+            }
+            EndAttack();
+            //Attack((Minion)selected, (Minion)enemy);
+        }
+        
+    }
+
+    public void SelectAttacker(Card causer)
+    {
+        if (state.waitForActions == state.Current)
+            selected = causer;
+            
     }
 
     public void Select(Card card)
     {
         if (state.waitForActions == state.Current)
             selected = card;
-        else if (state.chooseEnemy == state.Current && card is Minion && selected is Minion)
-        {
-            Attack((Minion)selected, (Minion)card);
-        }
     }
 
-    private void Attack(Minion causer, Minion enemy)
+    public void Attack(Minion causer, IEnemy enemy)
     {
-        enemy.DealDamage(causer.attack);
-        causer.DealDamage(enemy.attack);
-        EndAttack();
+        history.CreateEvent(causer, enemy, new Event(EventType.DEAL_DAMAGE, causer.Attack));
+        enemy.DealDamage(causer.Attack);
+        if (enemy is Minion)
+        {
+            history.CreateEvent((Minion)enemy, causer, new Event(EventType.DEAL_DAMAGE, enemy.Attack));
+            causer.DealDamage(enemy.Attack);
+        }
     }
 
     private void EndAttack()
@@ -138,16 +167,19 @@ public class GameManager : MonoBehaviour {
         enemies.Clear();
     }
 
+
+
     public bool Play()
     {
         if (selected == null)
             return false;
-        if (selected.owner.CanPlay(selected))
+        if (selected.Owner.CanPlay(selected))
         {
-            selected.owner.Play(selected);
+            
+            selected.Owner.Play(selected);
             //selected.Play();
             Debug.Log(selected);
-            history.CreateEvent((ICauser)selected.owner, (IEnemy)selected, new Event(EventType.PLAYED));
+            history.CreateEvent((ICauser)selected.Owner, (IEnemy)selected, new Event(EventType.PLAYED));
             selected.isPlayed = true;
             selected = null;
 
@@ -231,6 +263,7 @@ public class GameManagerFSM
             case GameManagerEvent.SUMMON: current.Summon(this); break;
             case GameManagerEvent.RETURN: current.Return(this); break;
         }
+        Debug.Log(current);
     }
     public abstract class ManagerState
     {

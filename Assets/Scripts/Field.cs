@@ -9,7 +9,23 @@ public class Field : MonoBehaviour {
     void Start () {
 		
 	}
-	
+	public bool CanBeAttacked(IEnemy enemy)
+    {
+        if (enemy is Minion && list.Contains((Minion)enemy))
+        {
+            if (((Minion)enemy).taunt)
+            {
+                return true;
+            }
+            foreach (Minion minion in list)
+            {
+                if (minion.taunt)
+                    return false;
+            }
+            return true;
+        }
+        return false;
+    }
     public List<IEnemy> GetEnemies()
     {
         return list.ConvertAll<IEnemy>(Converter);

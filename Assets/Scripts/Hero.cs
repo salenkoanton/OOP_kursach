@@ -7,10 +7,12 @@ public interface IEnemy
     void DealDamage(int damage);
     void Highlight();
     void Downlight();
+    Hero Owner { get; }
+    int Attack { get; }
 }
 
 public abstract class Hero : MonoBehaviour, IEnemy, ICauser {
-    
+
     public Hero opponent;
     public Hand hand;
     public Deck deck;
@@ -20,7 +22,15 @@ public abstract class Hero : MonoBehaviour, IEnemy, ICauser {
     private int armor = 0;
     private int max_mana = 0;
     private int cur_mana = 0;
-
+    private int attack = 0; //replace on weapon
+    //private List<Card> playedCards = new List<Card>();
+    public Hero Owner{
+        get { return this; }
+    }
+    public int Attack
+    {
+        get { return attack; }
+    }
     public void Highlight() {
 
     }
@@ -31,6 +41,22 @@ public abstract class Hero : MonoBehaviour, IEnemy, ICauser {
     // Use this for initialization
     void Start() {
 
+    }
+
+    public Event Cause(IEnemy enemy)
+    {
+        return new Event(EventType.DEAL_DAMAGE, 0); // todo damage
+    }
+
+    public List<IEnemy> FilterEnemies(List<IEnemy> allEnemies)
+    {
+        for (int i = allEnemies.Count - 1; i >= 0; i-- ){
+            if (allEnemies[i].Owner == this)
+            {
+                allEnemies.RemoveAt(i);
+            }
+        }
+        return allEnemies;
     }
 
     public void DealDamage(int damage)

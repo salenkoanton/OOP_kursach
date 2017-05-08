@@ -13,7 +13,7 @@ public class CardPrototypeManager : MonoBehaviour {
             copy = Instantiate(list[id], new Vector3(0, 0, 0), Quaternion.identity);
         else
             return null;
-        copy.owner = owner;
+        copy.Owner = owner;
         return copy;
     }
 

@@ -39,7 +39,8 @@ public class Event
 
 public interface ICauser
 {
-
+    List<IEnemy> FilterEnemies(List<IEnemy> allEnemies);
+    Event Cause(IEnemy enemy);
 }
 
 public class History : MonoBehaviour {
@@ -55,13 +56,18 @@ public class History : MonoBehaviour {
         HistoryEvent historyEvent = Instantiate(eventPrototype, new Vector3(0, 0, 0), Quaternion.identity);
         historyEvent.SetValues(causer, enemy, eve);
         list.Add(historyEvent);
-        historyQueue.Insert(0, historyEvent.ToString());
-        if(historyQueue.Count > maxEvents)
+        Message(historyEvent.ToString());
+        return historyEvent;
+    }
+
+    public void Message(string text)
+    {
+        historyQueue.Insert(0, text);
+        if (historyQueue.Count > maxEvents)
         {
             historyQueue.RemoveAt(maxEvents);
         }
         SetText();
-        return historyEvent;
     }
 
     private void SetText()

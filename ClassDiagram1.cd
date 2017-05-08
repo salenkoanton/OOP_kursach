@@ -1,0 +1,214 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="UINextTurn" Collapsed="true">
+    <Position X="9.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\UINextTurn.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Card" Collapsed="true">
+    <Position X="3" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AASAEkSAACAAgAAMAABCAAAAEIAAAEQAoAACAADCggA=</HashCode>
+      <FileName>Assets\Scripts\Card.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CardPrototypeManager" Collapsed="true">
+    <Position X="7.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAgAAACAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\CardPrototypeManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CoinSpell" Collapsed="true">
+    <Position X="3" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Spells\CoinSpell.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Deck" Collapsed="true">
+    <Position X="9.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAgAAACAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAkA=</HashCode>
+      <FileName>Assets\Scripts\Deck.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Event" Collapsed="true">
+    <Position X="11.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAIAAEAAAAAAAAAAABACAAAQAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\History.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Field" Collapsed="true">
+    <Position X="13" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAYAAhAAQCAAACAAAAAAAAAAgAAAIAAAAAAAAAAQAAA=</HashCode>
+      <FileName>Assets\Scripts\Field.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FrostBoltSpell" Collapsed="true">
+    <Position X="0.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAEAAACAAgAAAAAAAAAAAAAAAAAAAgAAAAADCAAA=</HashCode>
+      <FileName>Assets\Scripts\Spells\FrostBoltSpell.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameManager" Collapsed="true">
+    <Position X="7.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AASQAAEAACAAAABAAAgQAACAQKBEAAAFgBCAQgIQEkA=</HashCode>
+      <FileName>Assets\Scripts\GameManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameManagerFSM">
+    <Position X="14.75" Y="0.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Class Name="GameManagerFSM.ManagerChooseEnemy" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\Scripts\GameManager.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="GameManagerFSM.ManagerState" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\Scripts\GameManager.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="GameManagerFSM.ManagerToSummon" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\Scripts\GameManager.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="GameManagerFSM.ManagerWaitForActions" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\Scripts\GameManager.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="GameManagerFSM.ManagerWaitForOpponent" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\Scripts\GameManager.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAABEAAAACAAEAAgAABACAAAAAAICBAAAA=</HashCode>
+      <FileName>Assets\Scripts\GameManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Hand" Collapsed="true">
+    <Position X="11.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAYAAgAAACAAACAAAAAAAAAAAAAAAAAAgAAAAAAAAAg=</HashCode>
+      <FileName>Assets\Scripts\Hand.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Hero" Collapsed="true">
+    <Position X="2.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AASQAESAACAIAEAgAAABEAAggICAAECAgAAACBJAAAg=</HashCode>
+      <FileName>Assets\Scripts\Hero.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="History" Collapsed="true">
+    <Position X="13" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAgAAACEAAAAAAIAAAAAAAAACAAAIAYAAIAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\History.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HistoryEvent" Collapsed="true">
+    <Position X="7.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QgQAAkAAACAAAgAEAAAAAAAAAAAAAAAAAAAAAAIAAAI=</HashCode>
+      <FileName>Assets\Scripts\HistoryEvent.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Minion" Collapsed="true">
+    <Position X="5.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAEQAQCAAAAAAAIAAAACAAIQAAESAoAAAAADCAAg=</HashCode>
+      <FileName>Assets\Scripts\Minion.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="1.009" />
+  </Class>
+  <Class Name="Opponent" Collapsed="true">
+    <Position X="1.5" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACAAAAAEAAAAkAAAAAAAAAAAAAACAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Opponent.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.1" />
+  </Class>
+  <Class Name="Spell" Collapsed="true">
+    <Position X="1.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAEAAACAAAAAAAAAAAAAAAAAAAAAAgAAAAADCAAA=</HashCode>
+      <FileName>Assets\Scripts\Spell.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Table" Collapsed="true">
+    <Position X="9.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACAAAEAAAAAAAABgAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Table.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TableMinion" Collapsed="true">
+    <Position X="5.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAQCAAAAAAAAAAAAAAAAAQAAEAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\TableMinion.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UserInterface" Collapsed="true">
+    <Position X="11.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACAAAAAAAIAAAAAAAAAAAAAIAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\UserInterface.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="You" Collapsed="true">
+    <Position X="3.75" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACAAAAAEAAAAAAAAAAAAAAAAAAACAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\You.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="1.083" />
+  </Class>
+  <Interface Name="ICauser" Collapsed="true">
+    <Position X="11.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAA=</HashCode>
+      <FileName>Assets\Scripts\History.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="IEnemy" Collapsed="true">
+    <Position X="11.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAASAAAAAAAAAAAAAAAAAAIAAAEAAAAAAAABAAAA=</HashCode>
+      <FileName>Assets\Scripts\Hero.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="EventType" Collapsed="true">
+    <Position X="7.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAEEAAACAAAAAAAIAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\History.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="GameManagerEvent" Collapsed="true">
+    <Position X="7.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAABAAAAAIAAAABAAQAAAAAAIAAAA=</HashCode>
+      <FileName>Assets\Scripts\GameManager.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

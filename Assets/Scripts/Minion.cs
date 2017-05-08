@@ -5,6 +5,12 @@ using UnityEngine;
 public class Minion : Card, ICauser, IEnemy{
     public int attack, health;
     private static float HIGHLIGHT_SCALE = 1.1f;
+    private bool isHighlighting = false;
+    public bool taunt = false;
+    public override int Attack
+    {
+        get { return attack; }
+    }
     // Use this for initialization
     void Start () {
 		
@@ -15,15 +21,50 @@ public class Minion : Card, ICauser, IEnemy{
 		
 	}
 
+
+    public override Event Cause(IEnemy enemy)
+    {
+        GameManager.instance.Attack(this, enemy);
+        return base.Cause(enemy);
+    }
+
+    protected override bool InitiatePlaying()
+    {
+        return base.InitiatePlaying();
+    }
+
     public override void Highlight()
     {
-        transform.localScale = transform.localScale * HIGHLIGHT_SCALE;
+        if (!isHighlighting)
+        {
+            transform.localScale = transform.localScale * HIGHLIGHT_SCALE;
+            isHighlighting = true;
+        }
     }
     public override void Downlight()
     {
-        transform.localScale = transform.localScale / HIGHLIGHT_SCALE;
+        if (isHighlighting)
+        {
+            transform.localScale = transform.localScale / HIGHLIGHT_SCALE;
+            isHighlighting = false;
+        }
     }
 
+    public override List<IEnemy> FilterEnemies(List<IEnemy> allEnemies)
+    {
+        for (int i = allEnemies.Count - 1; i >= 0; i--)
+        {
+            if (allEnemies[i].Owner == owner)
+            {
+                allEnemies.RemoveAt(i);
+            }
+            else if (!owner.opponent.field.CanBeAttacked(allEnemies[i]))
+            {
+                allEnemies.RemoveAt(i);
+            }
+        }
+        return allEnemies;
+    }
 
 
     public override void DealDamage(int damage)
@@ -45,11 +86,18 @@ public class Minion : Card, ICauser, IEnemy{
             base.OnMouseDown();
         else
         {
-            GameManager.instance.Select(this);
-            GameManager.instance.PrepareToAttack(this);
-            
+            if (isHighlighting)
+                GameManager.instance.SelectEnemy(this);
+            else {
+                if (owner is You)
+                {
+                    GameManager.instance.SelectAttacker(this);
+                    GameManager.instance.PrepareToAttack(this);
+                }
+            }
             
         }
+
 
     }
     protected override void OnMouseDrag()
@@ -63,4 +111,5 @@ public class Minion : Card, ICauser, IEnemy{
         if (!isPlayed)
             base.OnMouseUp();
     }
+
 }

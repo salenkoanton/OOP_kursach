@@ -5,12 +5,26 @@ using UnityEngine;
 public abstract class Card : MonoBehaviour, IEnemy, ICauser{
     public int manacost, id;
     public string name_info;
-    Vector3 screenSpace;
-    Vector3 offset;
-    bool dragging = false;
-    Vector3 returnPosition;
-    public Hero owner;
+    protected Vector3 screenSpace;
+    protected Vector3 offset;
+    protected bool dragging = false;
+    protected Vector3 returnPosition;
+    protected Hero owner;
     public bool isPlayed = false;
+    public Hero Owner
+    {
+        get { return owner; }
+        set { owner = value; }
+    }
+    public virtual int Attack
+    {
+        get { return -1;}
+    }
+    public virtual Event Cause(IEnemy enemy)
+    {
+        //TODO attack
+        return null;
+    }
     void Start () {
 		
 	}
@@ -18,7 +32,10 @@ public abstract class Card : MonoBehaviour, IEnemy, ICauser{
 	void Update () {
 
     }
-
+    public virtual List<IEnemy> FilterEnemies(List<IEnemy> allEnemies)
+    {
+        return allEnemies;
+    }
     public virtual void Highlight()
     {
 
@@ -59,13 +76,19 @@ public abstract class Card : MonoBehaviour, IEnemy, ICauser{
     {
         dragging = false;
         if (transform.position.y > -2.5f)
-            if (GameManager.instance.Play())
+            if (InitiatePlaying())
                 return;
             else
                 transform.position = returnPosition;
         else
             transform.position = returnPosition;
     }
+
+    protected virtual bool InitiatePlaying()
+    {
+        return GameManager.instance.Play();
+    }
+
 
     protected virtual void OnMouseEnter()
     {
