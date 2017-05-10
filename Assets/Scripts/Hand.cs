@@ -15,6 +15,7 @@ public class Hand : MonoBehaviour {
     {
         if (list.Count < 10 && card != null)
         {
+
             card.gameObject.SetActive(true);
             card.transform.SetParent(transform);
             list.Add(card);

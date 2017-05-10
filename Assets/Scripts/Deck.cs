@@ -22,6 +22,14 @@ public class Deck : MonoBehaviour {
         list.Remove(toDraw);
         return toDraw;
     }
+
+    /*public void Hide()
+    {
+        foreach (Card card in list)
+        {
+            card.Hide();
+        }
+    }*/
 	
 	// Update is called once per frame
 	void Update () {

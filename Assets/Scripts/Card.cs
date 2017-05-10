@@ -11,6 +11,16 @@ public abstract class Card : MonoBehaviour, IEnemy, ICauser{
     protected Vector3 returnPosition;
     protected Hero owner;
     public bool isPlayed = false;
+    public Sprite back;
+    protected bool isSwown = true;
+    public virtual bool IsDead
+    {
+        get { return false; }
+    }
+    public virtual void Destroy() {
+        gameObject.SetActive(false);
+    }
+    public virtual void Freeze() { }
     public Hero Owner
     {
         get { return owner; }
@@ -29,9 +39,35 @@ public abstract class Card : MonoBehaviour, IEnemy, ICauser{
 		
 	}
 
-	void Update () {
+    protected virtual void Show()
+    {
+        if (!isSwown)
+        {
+            Reverse();
+            isSwown = true;
+        }
+    }
+    public virtual void Hide()
+    {
+        if (isSwown)
+        {
+            Reverse();
+            isSwown = false;
+        }
+    }
+
+    private void Reverse()
+    {
+        SpriteRenderer spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+        Sprite tmp = spriteRenderer.sprite;
+        spriteRenderer.sprite = back;
+        back = tmp;
+    }
+
+    void Update () {
 
     }
+    public virtual void Creating(MinionInfo infoUI) { }
     public virtual List<IEnemy> FilterEnemies(List<IEnemy> allEnemies)
     {
         return allEnemies;
@@ -92,21 +128,28 @@ public abstract class Card : MonoBehaviour, IEnemy, ICauser{
 
     protected virtual void OnMouseEnter()
     {
-        if (!isPlayed && owner is You)
-            transform.position -= new Vector3(0, -0.3f, 1);
-        GameManager.instance.SetCardInfoImage(this);
+        if (isSwown)
+        {
+            if (!isPlayed && owner is You)
+                transform.position -= new Vector3(0, -0.3f, 1);
+            GameManager.instance.SetCardInfoImage(this);
+        }
     }
 
     protected virtual void OnMouseExit()
     {
-        if (!isPlayed && owner is You)
-            transform.position += new Vector3(0, -0.3f, 1);
-        GameManager.instance.DisableCardInfoImage();
+        if (isSwown)
+        {
+            if (!isPlayed && owner is You)
+                transform.position += new Vector3(0, -0.3f, 1);
+            GameManager.instance.DisableCardInfoImage();
+        }
     }
 
     public virtual void Play()
     {
         isPlayed = true;
+        Show();
     }
 
     public override string ToString()

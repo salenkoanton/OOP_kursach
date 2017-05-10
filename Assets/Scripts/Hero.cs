@@ -9,6 +9,9 @@ public interface IEnemy
     void Downlight();
     Hero Owner { get; }
     int Attack { get; }
+    void Freeze();
+    bool IsDead { get; }
+    void Destroy();
 }
 
 public abstract class Hero : MonoBehaviour, IEnemy, ICauser {
@@ -23,6 +26,12 @@ public abstract class Hero : MonoBehaviour, IEnemy, ICauser {
     private int max_mana = 0;
     private int cur_mana = 0;
     private int attack = 0; //replace on weapon
+    private bool frozen = false;
+    private bool isDead = false;
+    public bool IsDead
+    {
+        get { return isDead; }
+    }
     //private List<Card> playedCards = new List<Card>();
     public Hero Owner{
         get { return this; }
@@ -31,12 +40,24 @@ public abstract class Hero : MonoBehaviour, IEnemy, ICauser {
     {
         get { return attack; }
     }
+    public void Destroy()
+    {
+        //todo endGame
+    }
+    public void DestroyMinion(Minion minion)
+    {
+        field.Destroy(minion);
+    }
     public void Highlight() {
 
     }
     public void Downlight()
     {
 
+    }
+    public void Freeze()
+    {
+        frozen = true;
     }
     // Use this for initialization
     void Start() {
@@ -82,7 +103,8 @@ public abstract class Hero : MonoBehaviour, IEnemy, ICauser {
             max_mana++;
         cur_mana = max_mana;
         SetManaText();
-        hand.Put(deck.DrawCard()); //fatigue
+        PutInHand(deck.DrawCard()); //fatigue
+        field.StartTurn();
         //run start_turn event and enable controls
     }
 
@@ -121,16 +143,20 @@ public abstract class Hero : MonoBehaviour, IEnemy, ICauser {
 		
 	}
 
-    public void StartGame(bool coin)
+    public virtual void StartGame(bool coin)
     {
         if (coin)
         {
-            hand.Put(GameManager.instance.GetCard(2, this));
-            hand.Put(deck.DrawCard());
+            PutInHand(GameManager.instance.GetCard(2, this));
+            PutInHand(deck.DrawCard());
         }
-        hand.Put(deck.DrawCard());
-        hand.Put(deck.DrawCard());
-        hand.Put(deck.DrawCard());
+        PutInHand(deck.DrawCard());
+        PutInHand(deck.DrawCard());
+        PutInHand(deck.DrawCard());
         Debug.Log("play");
+    }
+    public virtual void PutInHand(Card card)
+    {
+        hand.Put(card);
     }
 }

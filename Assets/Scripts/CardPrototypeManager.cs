@@ -5,7 +5,8 @@ using UnityEngine;
 public class CardPrototypeManager : MonoBehaviour {
 
     public List<Card> list = new List<Card>();
-
+    public MinionInfo minionInfo;
+    public Sprite back;
     public Card GetCard(int id, Hero owner)
     {
         Card copy;
@@ -14,6 +15,8 @@ public class CardPrototypeManager : MonoBehaviour {
         else
             return null;
         copy.Owner = owner;
+        
+        copy.Creating(minionInfo);
         return copy;
     }
 
@@ -24,6 +27,7 @@ public class CardPrototypeManager : MonoBehaviour {
         for (int i = 0; i < list.Count; i++) { //set id
             list[i].id = i;
             list[i].name_info = list[i].name;
+            list[i].back = back;
         }
 	}
 	

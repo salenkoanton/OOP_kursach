@@ -13,6 +13,7 @@ public class FrostBoltSpell : Spell {
     {
         GameManager.instance.Play();
         enemy.DealDamage(damage);
+        enemy.Freeze();
         return new Event(EventType.DEAL_DAMAGE, damage);
         
     }

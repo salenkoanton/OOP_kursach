@@ -63,15 +63,19 @@ public class GameManager : MonoBehaviour {
 
     private List<IEnemy> CollectEnemies(ICauser causer)
     {
+        List<IEnemy> enem = AllEnemies();
+        causer.FilterEnemies(enem);
+        return enem;
+    }
+    private List<IEnemy> AllEnemies()
+    {
         List<IEnemy> enem = new List<IEnemy>();
         enem.AddRange(table.opponent.field.GetEnemies());
         enem.AddRange(table.you.field.GetEnemies());
         enem.Add(table.you);
         enem.Add(table.opponent);
-        causer.FilterEnemies(enem);
         return enem;
     }
-
 
     public Card GetCard(int id, Hero owner)
     {
@@ -84,9 +88,23 @@ public class GameManager : MonoBehaviour {
         UI.cardInfoImage.sprite = card.gameObject.GetComponent<SpriteRenderer>().sprite;
     }
 
+    public void SetMinionInfo(Minion minion)
+    {
+        UI.attack.enabled = true;
+        UI.health.enabled = true;
+        UI.attackImage.enabled = true;
+        UI.healthImage.enabled = true;
+        UI.attack.text = minion.Attack.ToString();
+        UI.health.text = minion.health.ToString();
+    }
+
     public void DisableCardInfoImage()
     {
         UI.cardInfoImage.enabled = false;
+        UI.attack.enabled = false;
+        UI.health.enabled = false;
+        UI.attackImage.enabled = false;
+        UI.healthImage.enabled = false;
     }
 
     public void NextTurn()
@@ -165,19 +183,30 @@ public class GameManager : MonoBehaviour {
             enemy.Downlight();
         }
         enemies.Clear();
+        DestroyDeadEnemies();
     }
 
+    private void DestroyDeadEnemies()
+    {
+        List<IEnemy> enemyList = AllEnemies();
+        foreach (IEnemy enemy in enemyList)
+        {
+            if (enemy.IsDead)
+            {
+                enemy.Destroy();
+            }
+        }
+    }
 
 
     public bool Play()
     {
         if (selected == null)
             return false;
-        if (selected.Owner.CanPlay(selected))
+        if (selected.Owner.CanPlay(selected) && state.Current == state.waitForActions)
         {
             
             selected.Owner.Play(selected);
-            //selected.Play();
             Debug.Log(selected);
             history.CreateEvent((ICauser)selected.Owner, (IEnemy)selected, new Event(EventType.PLAYED));
             selected.isPlayed = true;

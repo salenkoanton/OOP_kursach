@@ -38,4 +38,14 @@ public class Opponent : Hero, ICauser, IEnemy {
         }
         return false;
     }
+    public override void StartGame(bool coin)
+    {
+        //deck.Hide();
+        base.StartGame(coin);
+    }
+    public override void PutInHand(Card card)
+    {
+        card.Hide();
+        base.PutInHand(card);
+    }
 }

@@ -31,6 +31,18 @@ public class Field : MonoBehaviour {
         return list.ConvertAll<IEnemy>(Converter);
     }
 
+    public void Destroy(Minion minion)
+    {
+        list.Remove(minion);
+    }
+    public void StartTurn()
+    {
+        foreach (Minion minion in list)
+        {
+            minion.StartTurn();
+        }
+    }
+
     private static IEnemy Converter(Minion target)
     {
         return target as IEnemy;
