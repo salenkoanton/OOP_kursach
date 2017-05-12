@@ -9,7 +9,7 @@ public class UINextTurn : EventTrigger
     {
         if (state)
         {
-            state = false;
+           
             GameManager.instance.NextTurn();
         }
         Debug.Log("OnPointerClick called.");

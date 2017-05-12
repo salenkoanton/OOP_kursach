@@ -2,14 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Field : MonoBehaviour {
+public class Field : MonoBehaviour, IObservable {
     private List<Minion> list = new List<Minion>();
     public float cardWidth = 1f;
+
     // Use this for initialization
     void Start () {
 		
 	}
-	public bool CanBeAttacked(IEnemy enemy)
+
+    public int SpellDamage()
+    {
+        int damage = 0;
+        foreach (Minion minion in list)
+        {
+            damage += minion.spellDamage;
+        }
+        return damage;
+    }
+
+    public bool CanBeAttacked(IEnemy enemy)
     {
         if (enemy is Minion && list.Contains((Minion)enemy))
         {
@@ -17,14 +29,17 @@ public class Field : MonoBehaviour {
             {
                 return true;
             }
-            foreach (Minion minion in list)
-            {
-                if (minion.taunt)
-                    return false;
-            }
-            return true;
         }
-        return false;
+        if (enemy is Minion && !list.Contains((Minion)enemy))
+        {
+            return false;
+        }
+        foreach (Minion minion in list)
+        {
+            if (minion.taunt)
+                return false;
+        }
+        return true;
     }
     public List<IEnemy> GetEnemies()
     {
@@ -34,12 +49,17 @@ public class Field : MonoBehaviour {
     public void Destroy(Minion minion)
     {
         list.Remove(minion);
+        SetCardsPositions();
     }
     public void StartTurn()
     {
         foreach (Minion minion in list)
         {
             minion.StartTurn();
+            if (minion.canAttack)
+            {
+                minion.SetLight();
+            }
         }
     }
 
@@ -55,16 +75,40 @@ public class Field : MonoBehaviour {
         SetCardsPositions();
     }
 
-    public bool CanPlay(Card toPlay)
+    public void EndTurn()
     {
-        if (list.Count < 7 && toPlay is Minion)
-            return true;
-        if (toPlay is Spell)
-            return true;
-        return false;
+        foreach (Minion minion in list)
+        {
+            //minion.StartTurn();
+
+            if (minion.canAttack)
+            {
+                minion.UnsetLight();
+            }
+            minion.EndTurn();
+        }
+    }
+    
+
+    public bool CanPlay(ICauser toPlay)
+    {
+        if (list.Count >= 7 && toPlay is Minion)
+        {
+            GameManager.instance.history.Message("Your field is full");
+            return false;
+        }
+        return true;
     }
 
-    private void SetCardsPositions()
+    public void Transform(IEnemy enemy, Minion into)
+    {
+        int toTransform = list.FindIndex((x) => (object)x == enemy);
+        list[toTransform].gameObject.SetActive(false);
+        list[toTransform] = into;
+        SetCardsPositions();
+    }
+
+    public void SetCardsPositions()
     {
         for (int i = 0; i < list.Count; i++)
         {
@@ -82,4 +126,33 @@ public class Field : MonoBehaviour {
     void Update () {
 		
 	}
+
+    public void SpellPlayed()
+    {
+        foreach (IObservable minion in list)
+        {
+            minion.SpellPlayed();
+        }
+    }
+    public void CardPlayed()
+    {
+        foreach (IObservable minion in list)
+        {
+            minion.CardPlayed();
+        }
+    }
+    public void DealedDamage()
+    {
+        foreach (IObservable minion in list)
+        {
+            minion.DealedDamage();
+        }
+    }
+    public void MinionSummoned()
+    {
+        foreach (IObservable minion in list)
+        {
+            minion.MinionSummoned();
+        }
+    }
 }

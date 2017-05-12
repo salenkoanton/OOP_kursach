@@ -38,7 +38,7 @@ public class HistoryEvent : MonoBehaviour {
 
     public override string ToString()
     {
-        string str = causer.ToString();
+        string str = ">>> " + causer.ToString();
         str += " " + eve.ToString();
         str += " " + enemy.ToString();
         

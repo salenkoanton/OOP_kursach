@@ -8,8 +8,11 @@ public enum EventType
     DEAL_DAMAGE,
     HEAL,
     FREEZE,
-    NEXT_TURN
-    
+    NEXT_TURN,
+    TRANSFORM,
+    GOT_DAMAGE,
+    CONTROL
+
 }
 
 public class Event
@@ -20,7 +23,8 @@ public class Event
     {
         get { return type; }
     }
-    public static string[] EventTypeStr = { "played", "deal damage", "heal", "freeze", "", "" };
+    public static string[] EventTypeStr = { "played", "deal damage", "heal", "freeze", "Next turn", "transforme", "got back", "control" };
+
     public Event(EventType type, int value = -1)
     {
         this.type = type;
@@ -41,12 +45,16 @@ public interface ICauser
 {
     List<IEnemy> FilterEnemies(List<IEnemy> allEnemies);
     Event Cause(IEnemy enemy);
+    Hero Owner { get; }
+    int Manacost { get; }
+    bool IsPlayed { get; set; }
+    void Play();
 }
 
 public class History : MonoBehaviour {
     public HistoryEvent eventPrototype;
     public Text text;
-    public int maxEvents = 10;
+    public int maxEvents = 100;
     private List<string> historyQueue = new List<string>();
     private List<HistoryEvent> list = new List<HistoryEvent>();
 

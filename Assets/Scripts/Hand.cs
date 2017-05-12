@@ -23,7 +23,7 @@ public class Hand : MonoBehaviour {
         }
     }
 
-    private void SetCardsPositions()
+    public void SetCardsPositions()
     {
         for (int i = 0; i < list.Count; i++)
         {
@@ -38,8 +38,24 @@ public class Hand : MonoBehaviour {
         SetCardsPositions();
     }
 
-	// Update is called once per frame
-	void Update () {
+    public void Hide()
+    {
+        
+        foreach (Card card in list)
+        {
+            card.Hide();
+        }
+
+    }
+    public void Show()
+    {
+        foreach (Card card in list)
+        {
+            card.Show();
+        }
+    }
+    // Update is called once per frame
+    void Update () {
 		
 	}
 }

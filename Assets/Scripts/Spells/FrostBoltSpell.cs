@@ -12,9 +12,10 @@ public class FrostBoltSpell : Spell {
     public override Event Cause(IEnemy enemy)
     {
         GameManager.instance.Play();
-        enemy.DealDamage(damage);
+        int fullDamage = damage + owner.SpellDamage;
+        enemy.DealDamage(fullDamage);
         enemy.Freeze();
-        return new Event(EventType.DEAL_DAMAGE, damage);
+        return new Event(EventType.DEAL_DAMAGE, fullDamage);
         
     }
 

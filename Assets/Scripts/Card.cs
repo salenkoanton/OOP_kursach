@@ -20,6 +20,15 @@ public abstract class Card : MonoBehaviour, IEnemy, ICauser{
     public virtual void Destroy() {
         gameObject.SetActive(false);
     }
+    public int Manacost
+    {
+        get { return manacost; }
+    }
+    public bool IsPlayed
+    {
+        get { return isPlayed; }
+        set { isPlayed = value; }
+    }
     public virtual void Freeze() { }
     public Hero Owner
     {
@@ -29,6 +38,20 @@ public abstract class Card : MonoBehaviour, IEnemy, ICauser{
     public virtual int Attack
     {
         get { return -1;}
+        set { }
+    }
+    public virtual int Health
+    {
+        get { return -1; }
+        set { }
+    }
+    public virtual void Heal(int heal)
+    {
+        
+    }
+    public virtual void InitLigth()
+    {
+
     }
     public virtual Event Cause(IEnemy enemy)
     {
@@ -39,7 +62,7 @@ public abstract class Card : MonoBehaviour, IEnemy, ICauser{
 		
 	}
 
-    protected virtual void Show()
+    public virtual void Show()
     {
         if (!isSwown)
         {
@@ -131,7 +154,7 @@ public abstract class Card : MonoBehaviour, IEnemy, ICauser{
         if (isSwown)
         {
             if (!isPlayed && owner is You)
-                transform.position -= new Vector3(0, -0.3f, 1);
+                transform.position -= new Vector3(0, -0.5f, 1);
             GameManager.instance.SetCardInfoImage(this);
         }
     }
@@ -141,7 +164,7 @@ public abstract class Card : MonoBehaviour, IEnemy, ICauser{
         if (isSwown)
         {
             if (!isPlayed && owner is You)
-                transform.position += new Vector3(0, -0.3f, 1);
+                transform.position += new Vector3(0, -0.5f, 1);
             GameManager.instance.DisableCardInfoImage();
         }
     }
@@ -150,7 +173,9 @@ public abstract class Card : MonoBehaviour, IEnemy, ICauser{
     {
         isPlayed = true;
         Show();
+        owner.CardPlayed();
     }
+
 
     public override string ToString()
     {

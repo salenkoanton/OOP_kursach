@@ -2,8 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Minion : Card, ICauser, IEnemy{
-    public int attack, health;
+public interface IObservable
+{
+    void SpellPlayed();
+    void CardPlayed();
+    void DealedDamage();
+    void MinionSummoned();
+    void EndTurn();
+}
+
+public class Minion : Card, ICauser, IEnemy, IObservable
+{
+    public int attack, health, maxHealth, startHealth, startAttack;
     private static float HIGHLIGHT_SCALE = 1.15f;
     private bool isHighlighting = false;
     public bool taunt = false;
@@ -11,7 +21,8 @@ public class Minion : Card, ICauser, IEnemy{
     private bool frozen = false;
     private MinionInfo info;
     private bool isDead = false;
-    
+    public int spellDamage = 0;
+    private Highligth light;
     public override bool IsDead
     {
         get { return isDead; }
@@ -19,7 +30,21 @@ public class Minion : Card, ICauser, IEnemy{
     public override int Attack
     {
         get { return attack; }
+        set { attack = value;
+            SetInfo();
+        }
     }
+   
+    public override int Health
+    {
+        get { return health; }
+        set {
+            maxHealth += value - health;
+            health = value;
+            SetInfo();
+        }
+    }
+    
     public override void Destroy()
     {
         owner.DestroyMinion(this);
@@ -27,22 +52,44 @@ public class Minion : Card, ICauser, IEnemy{
     }
     // Use this for initialization
     void Start () {
-		
+        
 	}
-	
-	// Update is called once per frame
-	void Update () {
+    public virtual void SpellPlayed() { }
+    public virtual void CardPlayed() { }
+    public virtual void DealedDamage() { }
+    public virtual void MinionSummoned() { }
+    public override void InitLigth()
+    {
+        light = GameManager.instance.cards.GetLight();
+        light.transform.SetParent(transform);
+        UnsetLight();
+    }
+    // Update is called once per frame
+    void Update () {
 		
 	}
 
     public override void Freeze()
     {
+
         frozen = true;
     }
-
+    public override void Heal(int heal)
+    {
+        health += heal;
+        if (health > maxHealth)
+            health = maxHealth;
+        SetInfo();
+    }
     public override Event Cause(IEnemy enemy)
     {
-        GameManager.instance.Attack(this, enemy);
+        int returnDamage = enemy.Attack;
+        int damage = Attack;
+        enemy.DealDamage(damage);
+        GameManager.instance.history.CreateEvent(this, enemy, new Event(EventType.DEAL_DAMAGE, damage));
+        DealDamage(returnDamage);
+        GameManager.instance.history.CreateEvent(this, enemy, new Event(EventType.GOT_DAMAGE, returnDamage));
+        light.gameObject.SetActive(false);
         canAttack = false;
         return base.Cause(enemy);
     }
@@ -95,22 +142,30 @@ public class Minion : Card, ICauser, IEnemy{
         {
             isDead = true; 
         }
+        owner.DealedDamage();
     }
     public override void Play()
     {
+        
+        
+        Summon();
         base.Play();
-        owner.field.Summon(this);
+
     }
-    void Summon(Field field)
+    public void Summon()
     {
+        owner.field.Summon(this);
+        owner.MinionSummoned();
+        isPlayed = true;
         
     }
 
-    public void StartTurn()
+    public virtual void StartTurn()
     {
         if (frozen) { 
             canAttack = false;
             frozen = false;
+            light.gameObject.SetActive(false);
         }
         else
             canAttack = true;
@@ -140,7 +195,11 @@ public class Minion : Card, ICauser, IEnemy{
         if (!isPlayed)
             base.OnMouseDrag();
     }
-
+    
+    public void UnsetLight()
+    {
+        light.gameObject.SetActive(false);
+    }
     protected override void OnMouseUp()
     {
         if (!isPlayed)
@@ -159,10 +218,21 @@ public class Minion : Card, ICauser, IEnemy{
         base.Creating(infoUI);
         info = Instantiate(infoUI, new Vector3(0, 0, 0), Quaternion.identity);
         info.transform.parent = transform;
+        maxHealth = health;
+        startAttack = attack;
+        startHealth = health;
         SetInfo();
+        
 
 
     }
+    
+    public void SetLight()
+    {
+        light.gameObject.SetActive(true);
+    }
+
+
 
     public override void Hide()
     {
@@ -174,7 +244,7 @@ public class Minion : Card, ICauser, IEnemy{
         
     }
 
-    protected override void Show()
+    public override void Show()
     {
         if (!isSwown)
         {
@@ -184,10 +254,46 @@ public class Minion : Card, ICauser, IEnemy{
         
     }
 
-    private void SetInfo()
+    protected void SetInfo()
     {
+        if (health != maxHealth)
+            info.health.color = info.damagedColor;
+        else if (health > startHealth)
+            info.health.color = info.raisedColor;
+        else
+            info.health.color = info.undamagedColor;
+        if (attack > startAttack)
+            info.attack.color = info.raisedColor;
+        else
+            info.attack.color = info.undamagedColor;
         info.attack.text = Attack.ToString();
         info.health.text = health.ToString();
+        
     }
+
+    public void SetAttack(int newAttack)
+    {
+        attack = newAttack; //todo add affect
+        SetInfo();
+    }
+    public void SetHealth(int newHealth)
+    {
+        health = newHealth; //todo add affect
+        maxHealth = newHealth;
+        SetInfo();
+    }
+    public void Copy()
+    {
+        info = transform.GetComponentsInChildren<MinionInfo>()[0];
+    }
+    public Color GetAttackColor()
+    {
+        return info.attack.color;
+    }
+    public Color GetHealthColor()
+    {
+        return info.health.color;
+    }
+    public virtual void EndTurn() { }
 
 }

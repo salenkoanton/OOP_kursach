@@ -9,15 +9,22 @@ public class GameManager : MonoBehaviour {
     public CardPrototypeManager cards;
     public History history;
     public GameManagerFSM state;
-    public static GameManager instance;
+    public static GameManager instance
+    {
+        get { if (_instance == null)
+                _instance = new GameManager();
+            return _instance;
+        }
+    }
+    private static GameManager _instance;
     public bool yourTurn;
-    private Card selected;
+    private ICauser selected;
     public List<IEnemy> enemies = new List<IEnemy>();
     void Awake()
     {
-        if (instance == null)
+        if (_instance == null)
         {
-            instance = this;
+            _instance = this;
         }
         else
         {
@@ -25,6 +32,11 @@ public class GameManager : MonoBehaviour {
         }
         DontDestroyOnLoad(gameObject);
         
+    }
+
+    private GameManager()
+    {
+
     }
 
     public void PrepareToAttack(ICauser causer)
@@ -47,7 +59,7 @@ public class GameManager : MonoBehaviour {
     {
         if (state == null)
         {
-            state = new GameManagerFSM(yourTurn);
+            state = new GameManagerFSM(false);
         }
     }
 
@@ -67,7 +79,7 @@ public class GameManager : MonoBehaviour {
         causer.FilterEnemies(enem);
         return enem;
     }
-    private List<IEnemy> AllEnemies()
+    public List<IEnemy> AllEnemies()
     {
         List<IEnemy> enem = new List<IEnemy>();
         enem.AddRange(table.opponent.field.GetEnemies());
@@ -80,6 +92,10 @@ public class GameManager : MonoBehaviour {
     public Card GetCard(int id, Hero owner)
     {
         return cards.GetCard(id, owner);
+    }
+    public T GetRandomCard<T>(System.Predicate<Card> filter) where T: Card
+    {
+        return cards.GetRandomCard<T>(filter);
     }
 
     public void SetCardInfoImage(Card card)
@@ -96,6 +112,8 @@ public class GameManager : MonoBehaviour {
         UI.healthImage.enabled = true;
         UI.attack.text = minion.Attack.ToString();
         UI.health.text = minion.health.ToString();
+        UI.attack.color = minion.GetAttackColor();
+        UI.health.color = minion.GetHealthColor();
     }
 
     public void DisableCardInfoImage()
@@ -109,21 +127,36 @@ public class GameManager : MonoBehaviour {
 
     public void NextTurn()
     {
-        if (state.Current == state.waitForActions || state.Current == state.waitForOpponent)
+        if (state.Current == state.waitForActions)
         {
             yourTurn = !yourTurn;
             if (yourTurn)
             {
                 table.opponent.EndTurn();
-                table.you.StartTurn();
+                //table.you.StartTurn();
                 UI.nextTurn.state = true;
             }
             else
             {
                 table.you.EndTurn();
-                table.opponent.StartTurn();
+                //table.opponent.StartTurn();
 
             }
+            DestroyDeadEnemies();
+            state.Next(GameManagerEvent.NEXT_TURN);
+        }
+        else if (state.Current == state.waitForOpponent)
+        {
+            SwitchPositions();
+            if (yourTurn)
+            {
+                table.you.StartTurn();
+            }
+            else
+            {
+                table.opponent.StartTurn();
+            }
+
             state.Next(GameManagerEvent.NEXT_TURN);
         }
         else
@@ -138,6 +171,7 @@ public class GameManager : MonoBehaviour {
 
         if (enemies.Contains(enemy) && state.chooseEnemy == state.Current)
         {
+            state.Next(GameManagerEvent.END_ACTION);
             ICauser causerTMP = selected;
             Event eve = selected.Cause(enemy);
             if (eve != null)
@@ -157,7 +191,7 @@ public class GameManager : MonoBehaviour {
             
     }
 
-    public void Select(Card card)
+    public void Select(ICauser card)
     {
         if (state.waitForActions == state.Current)
             selected = card;
@@ -177,7 +211,6 @@ public class GameManager : MonoBehaviour {
     private void EndAttack()
     {
         selected = null;
-        state.Next(GameManagerEvent.END_ACTION);
         foreach (IEnemy enemy in enemies)
         {
             enemy.Downlight();
@@ -197,7 +230,10 @@ public class GameManager : MonoBehaviour {
             }
         }
     }
-
+    private void SwitchPositions()
+    {
+        table.SwitchPositions();
+    }
 
     public bool Play()
     {
@@ -209,9 +245,9 @@ public class GameManager : MonoBehaviour {
             selected.Owner.Play(selected);
             Debug.Log(selected);
             history.CreateEvent((ICauser)selected.Owner, (IEnemy)selected, new Event(EventType.PLAYED));
-            selected.isPlayed = true;
+            //selected.IsPlayed = true;
             selected = null;
-
+            DestroyDeadEnemies();
             return true;
         }
         return false;

@@ -46,4 +46,21 @@ public class Deck : MonoBehaviour {
             list.Add(instance);
         }
     }
+
+    public Minion RandomMinion()
+    {
+        List<Minion> minions = new List<Minion>();
+        foreach (Card card in list)
+        {
+            if (card is Minion)
+            {
+                minions.Add((Minion)card);
+            }
+        }
+        if (minions.Count == 0)
+        {
+            return null;
+        }
+        return minions[Random.Range(0, minions.Count)];
+    }
 }

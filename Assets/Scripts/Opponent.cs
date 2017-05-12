@@ -45,7 +45,10 @@ public class Opponent : Hero, ICauser, IEnemy {
     }
     public override void PutInHand(Card card)
     {
-        card.Hide();
-        base.PutInHand(card);
+        if (card != null)
+        {
+            card.Hide();
+            base.PutInHand(card);
+        }
     }
 }
