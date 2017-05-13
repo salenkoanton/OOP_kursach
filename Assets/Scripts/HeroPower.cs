@@ -8,6 +8,8 @@ public class HeroPower : MonoBehaviour, ICauser {
         get { return owner; }
         set { owner = value; }
     }
+    private bool canAttack = true;
+
     public Hero owner;
     public void Play()
     {
@@ -22,6 +24,10 @@ public class HeroPower : MonoBehaviour, ICauser {
         get;
         set;
     }
+    public void StartTurn()
+    {
+        canAttack = true;
+    }
     public List<IEnemy> FilterEnemies(List<IEnemy> enemies) {
         return enemies;
     }
@@ -29,11 +35,12 @@ public class HeroPower : MonoBehaviour, ICauser {
     {
         enemy.DealDamage(1);
         owner.Play(this);
+        canAttack = false;
         return new Event(EventType.DEAL_DAMAGE, 1);
     }
     protected void OnMouseDown()
     {
-        if (Owner.CanPlay(this))
+        if (canAttack && Owner.CanPlay(this))
         {
             GameManager.instance.Select(this);
             GameManager.instance.PrepareToAttack(this);

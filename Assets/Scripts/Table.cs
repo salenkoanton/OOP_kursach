@@ -35,9 +35,14 @@ public class Table : MonoBehaviour {
 
 
     }
+    public void InitDecks(List<int> your, List<int> opponent)
+    {
+        you.InitDeck(your);
+        this.opponent.InitDeck(opponent);
+    }
     // Use this for initialization
     void Start () {
-        StartGame();
+        //StartGame();
     }
 	
 	// Update is called once per frame

@@ -34,14 +34,38 @@ public class CardPrototypeManager : MonoBehaviour {
         return target as IEnemy;
     }
 
+    public void GetRandomId(out int first, out int second, out int trird)
+    {
+        int random = Random.Range(0, list.Count);
+        first = random;
+        while(first == random)
+            random = Random.Range(0, list.Count);
+        second = random;
+        while (first == random || second == random)
+            random = Random.Range(0, list.Count);
+        trird = random;
+    }
+
     public Highligth GetLight()
     {
         return Instantiate(light, light.transform);
     }
-   
+    public Sprite GetCardSprite(int id)
+    {
+        if (id >= list.Count || id < 0)
+            return null;
+        return list[id].GetComponent<SpriteRenderer>().sprite;
+    }
+    public string GetCardName(int id)
+    {
+        
+        if (id >= list.Count || id < 0)
+            return null;
+        return list[id].name_info + " " + list[id].manacost.ToString();
+    }
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         for (int i = 0; i < list.Count; i++) { //set id
             list[i].id = i;
             list[i].name_info = list[i].name;

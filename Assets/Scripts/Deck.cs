@@ -22,22 +22,10 @@ public class Deck : MonoBehaviour {
         list.Remove(toDraw);
         return toDraw;
     }
-
-    /*public void Hide()
+    public void InitDeck(List<int> ids)
     {
-        foreach (Card card in list)
-        {
-            card.Hide();
-        }
-    }*/
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
-    void Start()
-    {
+        this.ids = ids;
+        list.Clear();
         foreach (int id in ids)
         {
             Card instance = GameManager.instance.GetCard(id, transform.parent.gameObject.GetComponent<Hero>());
@@ -45,6 +33,23 @@ public class Deck : MonoBehaviour {
             instance.gameObject.SetActive(false);
             list.Add(instance);
         }
+    }
+    /*public void Hide()
+    {
+        foreach (Card card in list)
+        {
+            card.Hide();
+        }
+    }*/
+
+    // Update is called once per frame
+    void Update () {
+		
+	}
+
+    void Start()
+    {
+        
     }
 
     public Minion RandomMinion()

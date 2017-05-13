@@ -1,0 +1,414 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="AsureDrakeMinion">
+    <Position X="27.5" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Minions\AsureDrakeMinion.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BabbingBookMinion">
+    <Position X="27.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Minions\BabbingBookMinion.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BarnsMinion">
+    <Position X="27.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Minions\BarnsMinion.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BerserkerMinion">
+    <Position X="27.5" Y="11.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAA=</HashCode>
+      <FileName>Assets\Scripts\Minions\BerserkerMinion.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CairneMinion">
+    <Position X="23.5" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACAAAAAAAAAACAAAAABAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Minions\CairneMinion.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HealbotMinion">
+    <Position X="23.5" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACQAAAAAACAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Minions\HealbotMinion.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HotSpringGuardianMinion">
+    <Position X="23.5" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAEAAAKAAAAAAAAAAAAAAAAAAAAAAgAAAAADCAAA=</HashCode>
+      <FileName>Assets\Scripts\Minions\HotSpringGuardianMinion.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KnifeJugglerMinion">
+    <Position X="25.5" Y="13" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Minions\KnifeJugglerMinion.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ManaWyrmMinion">
+    <Position X="23.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgQAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Minions\ManaWyrmMinion.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PhoenixMinion">
+    <Position X="27.5" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAEAAACAAgAAAAAAAAAAAAAAAAAAAgAAAAADCAAA=</HashCode>
+      <FileName>Assets\Scripts\Minions\PhoenixMinion.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RagnarosMinion">
+    <Position X="27.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACAAAAAAAAABEAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Minions\RagnarosMinion.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SylvanasMinion">
+    <Position X="23.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Minions\SylvanasMinion.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ArcaneIntellectSpell">
+    <Position X="13.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Spells\ArcaneIntellectSpell.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BrawlSpell">
+    <Position X="15.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Spells\BrawlSpell.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CoinSpell">
+    <Position X="11.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Spells\CoinSpell.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FrostBoltSpell">
+    <Position X="17.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAEAAACAAgAAAAAAAAAAAAAAAAAAAgAAAAADCAAA=</HashCode>
+      <FileName>Assets\Scripts\Spells\FrostBoltSpell.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LotusMarkSpell">
+    <Position X="15.75" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Spells\LotusMarkSpell.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Polymorph">
+    <Position X="6.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAACAAAAAAAAAAAAAAAAAAAAAAgAAAgADCAAA=</HashCode>
+      <FileName>Assets\Scripts\Spells\Polymorph.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PortalSpell">
+    <Position X="8.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAACAAAAAAAAAAAAAAAAAAAAAAgAAAAADCAAA=</HashCode>
+      <FileName>Assets\Scripts\Spells\PortalSpell.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PowerWordShieldSpell">
+    <Position X="10" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAEAAACAAAAAAAAAAAAAAAAAAAAAAgAAAAADCAAA=</HashCode>
+      <FileName>Assets\Scripts\Spells\PowerWordShieldSpell.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Card">
+    <Position X="20.25" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AASAGkWABCIAgACMEABCEAAAEOBEAEQAoAACAADCghI=</HashCode>
+      <FileName>Assets\Scripts\Card.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CardPrototypeManager">
+    <Position X="40" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAgECQCAEAAAAAAEAAgAAQgIAAAAAAIAABAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\CardPrototypeManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Deck">
+    <Position X="41.75" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAgABACAAAAAAAAAAAAAAEAAAgAAAAAAAAAAAAkA=</HashCode>
+      <FileName>Assets\Scripts\Deck.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Field" BaseTypeListCollapsed="true">
+    <Position X="40" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgYAAhABQCAACCAAAAABEAQAggBAIAAAAAAAAAAQgAA=</HashCode>
+      <FileName>Assets\Scripts\Field.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="GameManager">
+    <Position X="36.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AASUEAEAADAEAABAIAgQAACgQKBEAQAFgBCAQgIQEkA=</HashCode>
+      <FileName>Assets\Scripts\GameManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameManagerFSM">
+    <Position X="29.25" Y="1" Width="1.75" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Class Name="GameManagerFSM.ManagerState">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\Scripts\GameManager.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="GameManagerFSM.ManagerToSummon">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\Scripts\GameManager.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="GameManagerFSM.ManagerChooseEnemy">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\Scripts\GameManager.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="GameManagerFSM.ManagerWaitForActions">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\Scripts\GameManager.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="GameManagerFSM.ManagerWaitForOpponent">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\Scripts\GameManager.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="GameManagerFSM.ManagerDeckBuilder">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\Scripts\GameManager.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAABEAAAACAAEAAgAABACAAAAAAICBAAAA=</HashCode>
+      <FileName>Assets\Scripts\GameManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Hand">
+    <Position X="33" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAYAAgAAACAAACAAEAAAAAAAAAAEAAAAgAAAAAAAAAg=</HashCode>
+      <FileName>Assets\Scripts\Hand.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Hero">
+    <Position X="2.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgSQCETlACJICECgAIABEAQklpTAhUDAwCAAKBJAgBo=</HashCode>
+      <FileName>Assets\Scripts\Hero.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="HeroAvatar">
+    <Position X="38.25" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\HeroAvatar.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HeroPower" BaseTypeListCollapsed="true">
+    <Position X="34.75" Y="4.25" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Properties" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAQAAECAACIAgAAAAAAAECAAAAAAAAAAoAAAAABAABA=</HashCode>
+      <FileName>Assets\Scripts\HeroPower.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Highligth">
+    <Position X="38.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Highligth.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Event">
+    <Position X="41.75" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAIAAEAAAAAAAAAAABACAAAQAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\History.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="History">
+    <Position X="31.25" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAgAAACEAAAAAAIAAAAAAAAACAAAIAYAAIAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\History.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HistoryEvent">
+    <Position X="34.75" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QgQAAkAAACAAAgAEAAAAAAAAAAAAAAAAAAAAAAIAAAI=</HashCode>
+      <FileName>Assets\Scripts\HistoryEvent.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Minion">
+    <Position X="25.5" Y="1" Width="1.5" />
+    <InheritanceLine Type="Card" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="21.5" Y="1" />
+        <Point X="21.5" Y="0.625" />
+        <Point X="26" Y="0.625" />
+        <Point X="26" Y="1" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AgYAKEQJQCAACACAEIBBECCAAvZFBGaE4aAAAgDCgAo=</HashCode>
+      <FileName>Assets\Scripts\Minion.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="1.234" />
+  </Class>
+  <Class Name="MinionInfo">
+    <Position X="34.75" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACQICAAAACAAAAAAAAAAAAAAAAAAAACAAAABAAAQAAg=</HashCode>
+      <FileName>Assets\Scripts\MinionInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Opponent">
+    <Position X="0.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACAAAAAEAAAAkAAgAAAAAAAAAAACAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Opponent.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Spell">
+    <Position X="17.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAEAAACAAAAAAAAAAAAAAAAAAAAAAgAAAAADCAAA=</HashCode>
+      <FileName>Assets\Scripts\Spell.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Table">
+    <Position X="38.25" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACAAAEAAAAAAAABgAAAAgQAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Table.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TableMinion">
+    <Position X="23.5" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAQCAAAAAAAAAAAAAAAAAQAAEAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\TableMinion.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UIArenaBuilder">
+    <Position X="38.25" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABQRQAAAACgAEAAAAoEAAAAIAAAAAKBIAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\UIArenaBuilder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UIDeckBuilder">
+    <Position X="33" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAYAAgAAQCAAAAAgAAAAAAEAAABAABAICAAAAAAAAAI=</HashCode>
+      <FileName>Assets\Scripts\UIDeckBuilder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UINextTurn">
+    <Position X="36.5" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\UINextTurn.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UserInterface">
+    <Position X="41.75" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACQACAAAACAAAAAAAoAAAAAAAAAAAACIAAAAAAAAAAg=</HashCode>
+      <FileName>Assets\Scripts\UserInterface.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Weapon">
+    <Position X="17.75" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACAAAAAAAAAAAAAAAAQAAACAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Weapon.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="You">
+    <Position X="4.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACAAAAAEAAAAAAAAAAAAAAAAAAACAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\You.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="IEnemy">
+    <Position X="33" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACASAAAAAAACAAAAAEAAAAIBAAEAAAAAAAABAAAI=</HashCode>
+      <FileName>Assets\Scripts\Hero.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ICauser">
+    <Position X="31.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAECAAAIAAAAAAAAAAAAAAAAAAAAAgAAAAABAABA=</HashCode>
+      <FileName>Assets\Scripts\History.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="IObservable">
+    <Position X="41.75" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAABAAAACAAAAAABAAAAAAAAAAAAAAAAAAAAgAA=</HashCode>
+      <FileName>Assets\Scripts\Minion.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="GameManagerEvent">
+    <Position X="31.25" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAABAAAAAIAAAABAAQAAAAAAIAAAA=</HashCode>
+      <FileName>Assets\Scripts\GameManager.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="EventType">
+    <Position X="31.25" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAMAAAEEAAACAAAAAAAIAAAEAAAAAABAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\History.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

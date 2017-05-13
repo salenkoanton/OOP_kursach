@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour {
     public CardPrototypeManager cards;
     public History history;
     public GameManagerFSM state;
+    //public UIDeckBuilder yourDeck, opponentDeck;
+    //public UIArenaBuilder builder;
     public static GameManager instance
     {
         get { if (_instance == null)
@@ -54,6 +56,24 @@ public class GameManager : MonoBehaviour {
         }
     }
 
+    /*public void StartGame()
+    {
+        if (yourDeck.IsReady() && opponentDeck.IsReady())
+        {
+            yourDeck.transform.parent.gameObject.SetActive(false);
+            table.gameObject.SetActive(true);
+        }
+        table.InitDecks(yourDeck.List, opponentDeck.List);
+        table.StartGame();
+    }*/
+    public void StartGame(List<int> your, List<int> opponents)
+    {
+        //builder.gameObject.SetActive(false);
+        table.gameObject.SetActive(true);
+        UI.gameObject.SetActive(true);
+        table.InitDecks(your, opponents);
+        table.StartGame();
+    }
 
     public void InitialiseStateManager()
     {
@@ -65,11 +85,7 @@ public class GameManager : MonoBehaviour {
 
     public void EndGame(Hero loser)
     {
-        if (loser == table.you)
-        {
-
-        }
-        else;
+        UI.winText.text = loser.opponent.name + " win";
 
     }
 
@@ -254,7 +270,7 @@ public class GameManager : MonoBehaviour {
     }
     // Use this for initialization
     void Start () {
-        
+        UI.gameObject.SetActive(false);
     }
     private void UndoAttack()
     {
@@ -340,6 +356,7 @@ public class GameManagerFSM
         public virtual void ChooseEnemy(GameManagerFSM fsm) { }
         public virtual void EndAction(GameManagerFSM fsm) { }
         public virtual void Return(GameManagerFSM fsm) { }
+        public virtual void EndGame(GameManagerFSM fsm) { }
 
     }
 
@@ -421,6 +438,22 @@ public class GameManagerFSM
     }
 
     public class ManagerWaitForOpponent : ManagerState
+    {
+        public override void Start()
+        {
+
+        }
+
+        public override void End()
+        {
+
+        }
+        public override void NextTurn(GameManagerFSM fsm)
+        {
+            fsm.current = fsm.waitForActions;
+        }
+    }
+    public class ManagerDeckBuilder : ManagerState
     {
         public override void Start()
         {

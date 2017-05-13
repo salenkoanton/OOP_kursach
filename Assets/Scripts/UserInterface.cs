@@ -10,6 +10,7 @@ public class UserInterface : MonoBehaviour {
     public Text health;
     public Image attackImage;
     public Image healthImage;
+    public Text winText;
     // Use this for initialization
     void Start () {
 		

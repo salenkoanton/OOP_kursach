@@ -13,11 +13,13 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile></CompilerResponseFile>
+    <CompilerResponseFile>
+    </CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows:5</UnityBuildTarget>
     <UnityVersion>5.5.1f1</UnityVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <LangVersion Condition=" '$(VisualStudioVersion)' != '10.0' ">4</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -90,6 +92,7 @@
     <Compile Include="Assets\Scripts\Minion.cs" />
     <Compile Include="Assets\Scripts\MinionInfo.cs" />
     <Compile Include="Assets\Scripts\Minions\AsureDrakeMinion.cs" />
+    <Compile Include="Assets\Scripts\Minions\BabbingBookMinion.cs" />
     <Compile Include="Assets\Scripts\Minions\BarnsMinion.cs" />
     <Compile Include="Assets\Scripts\Minions\BerserkerMinion.cs" />
     <Compile Include="Assets\Scripts\Minions\CairneMinion.cs" />
@@ -97,11 +100,6 @@
     <Compile Include="Assets\Scripts\Minions\HotSpringGuardianMinion.cs" />
     <Compile Include="Assets\Scripts\Minions\KnifeJugglerMinion.cs" />
     <Compile Include="Assets\Scripts\Minions\ManaWyrmMinion.cs" />
-    <Compile Include="Assets\Scripts\Minions\NewBehaviourScript.cs" />
-    <Compile Include="Assets\Scripts\Minions\NewBehaviourScript1.cs" />
-    <Compile Include="Assets\Scripts\Minions\NewBehaviourScript2.cs" />
-    <Compile Include="Assets\Scripts\Minions\NewBehaviourScript3.cs" />
-    <Compile Include="Assets\Scripts\Minions\NewBehaviourScript4.cs" />
     <Compile Include="Assets\Scripts\Minions\PhoenixMinion.cs" />
     <Compile Include="Assets\Scripts\Minions\RagnarosMinion.cs" />
     <Compile Include="Assets\Scripts\Minions\SylvanasMinion.cs" />
@@ -111,14 +109,21 @@
     <Compile Include="Assets\Scripts\Spells\BrawlSpell.cs" />
     <Compile Include="Assets\Scripts\Spells\CoinSpell.cs" />
     <Compile Include="Assets\Scripts\Spells\FrostBoltSpell.cs" />
+    <Compile Include="Assets\Scripts\Spells\LotusMarkSpell.cs" />
     <Compile Include="Assets\Scripts\Spells\Polymorph.cs" />
     <Compile Include="Assets\Scripts\Spells\PortalSpell.cs" />
+    <Compile Include="Assets\Scripts\Spells\PowerWordShieldSpell.cs" />
     <Compile Include="Assets\Scripts\Table.cs" />
     <Compile Include="Assets\Scripts\TableMinion.cs" />
+    <Compile Include="Assets\Scripts\UIArenaBuilder.cs" />
+    <Compile Include="Assets\Scripts\UIDeckBuilder.cs" />
     <Compile Include="Assets\Scripts\UINextTurn.cs" />
     <Compile Include="Assets\Scripts\UserInterface.cs" />
     <Compile Include="Assets\Scripts\Weapon.cs" />
     <Compile Include="Assets\Scripts\You.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram3.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

@@ -73,7 +73,7 @@ public abstract class Hero : MonoBehaviour, IEnemy, ICauser, IObservable {
     }
     public void Destroy()
     {
-        //todo endGame
+        GameManager.instance.EndGame(this);
     }
     public void Heal(int heal)
     {
@@ -133,7 +133,7 @@ public abstract class Hero : MonoBehaviour, IEnemy, ICauser, IObservable {
     {
         health -= damage;
         SetInfo();
-        if (health < 0)
+        if (health <= 0)
         {
             GameManager.instance.EndGame(this);
         }
@@ -165,7 +165,10 @@ public abstract class Hero : MonoBehaviour, IEnemy, ICauser, IObservable {
     public bool CanPlay(ICauser toPlay)
     {
         if (cur_mana < toPlay.Manacost)
+        {
+            GameManager.instance.history.Message("You have not enought mana");
             return false;
+        }
         if (field.CanPlay(toPlay) && active)
             return true;
         return false;
@@ -267,6 +270,10 @@ public abstract class Hero : MonoBehaviour, IEnemy, ICauser, IObservable {
             DealDamage(fatigue++);
             GameManager.instance.history.CreateEvent(this, this, new Event(EventType.DEAL_DAMAGE, fatigue - 1));
         }
+    }
+    public void InitDeck(List<int> ids)
+    {
+        deck.InitDeck(ids);
     }
     public Minion RandomDeckMinion()
     {
