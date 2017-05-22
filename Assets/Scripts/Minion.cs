@@ -13,7 +13,7 @@ public interface IObservable
 
 public class Minion : Card, ICauser, IEnemy, IObservable
 {
-    public int health, maxHealth, startHealth, startAttack;
+    public int attack, health, maxHealth, startHealth, startAttack;
     private static float HIGHLIGHT_SCALE = 1.15f;
     private bool isHighlighting = false;
     public bool taunt = false;
